@@ -83,6 +83,7 @@ class Attention(nn.Module):
 
         attention_scores = torch.matmul(query_layer, key_layer.transpose(-1, -2))
         attention_scores = attention_scores / math.sqrt(self.attention_head_size)
+        print('the shape of attention_scores is {}'.format(attention_scores.shape))
         attention_probs = self.softmax(attention_scores)
         weights = attention_probs if self.vis else None
         attention_probs = self.attn_dropout(attention_probs)
